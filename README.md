@@ -131,8 +131,11 @@ People stand in a queue. When a **new person** joins at the **end**:
 ```
 Input Queue: [10, 5, 15, 8, 3]
 Queue after: [15, 8, 3]
-````
-
+```
+**Constraints**
+```
+Time Complexity: O(N)
+```
 ---
 
 ## How to Run
