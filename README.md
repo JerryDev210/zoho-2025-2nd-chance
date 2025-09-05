@@ -61,13 +61,15 @@ Output: Not Allowed
 
 ### 4. Maximum Coins in Pyramid (Mystery Game)
 **File:** `Qus4.java`  
-Given a pyramid (triangle) of numbers, calculate the maximum number of coins that can be collected from top to bottom by moving only to adjacent numbers.
+You are an explorer climbing down a mystical pyramid of treasures. Each level of the pyramid contains gold coins, and from each coin, you can only move to one of the two directly connected coins on the level below.
+
+Your goal is to collect as many coins as possible on your way down, starting from the top of the pyramid and choosing a path through adjacent positions on each row.
 
 **Example**
 ```
 Input 1:
-1
-2 3
+  1
+ 2 3
 4 5 6
 
 Output: 10   (1 → 3 → 6)
@@ -86,35 +88,80 @@ Ouput 33 (6 → 2 → 9 → 7 → 9)
 
 ### 5. Recently Played Songs
 **File:** `Qus5.java`  
-Implement a system that maintains a playlist of recently played songs with a fixed capacity.  
-- If capacity is exceeded, remove the least recently played song.  
-- Always show the current playlist.
+You're implementing a simplified version of Spotify’s “Recently Played” feature.
+
+Maintain a list of the last K unique songs Played.
+When a new song is played:
+
+- If it already exists in the list, move it to the front.
+
+- If it's new and the list has less than k songs, add it to the front.
+
+- If it's new and the list is full, remove the least recently played song(last), then add it to the front.
+
+You are given:  
+- **K** – the maximum number of songs in the playlist (1 ≤ K ≤ 1000)  
+- **N** – the total number of songs played (1 ≤ N ≤ 10<sup> 5</sup>)  
+- A list of **N** song IDs (each ID is a positive integer ≤ 10<sup> 9</sup>)
+
+Print the final state of the playlist (most recent first), space-separated.
 
 **Example**
 ```
+Sample input:
+3
+7
+5 3 5 2 4 5 1
 
-Capacity = 3
-Play: A, B, C
-Playlist = [A, B, C]
+Sample output:
+1 5 4
 
-Play: D
-Playlist = [B, C, D]
-
+Explanation:
+Play 5 → [5]
+Play 3 → [3, 5]
+Play 5 → [5, 3]
+Play 2 → [2, 5, 3]
+Play 4 → [4, 2, 5]   (3 removed because size > 3)
+Play 5 → [5, 4, 2]
+Play 1 → [1, 5, 4]   (2 removed because size > 3)
 ```
 
 ---
 
 ### 6. Package Dependency Resolution
 **File:** `Qus6.java`  
-Given a set of packages and their dependencies, resolve the order in which packages must be installed.  
-Detect cycles if present.
+
+A software system can have dependencies on other packages to be installed.  
+You are given package dependencies as pairs **(A depends on B)**.  
+
+You must determine the **installation order** of packages such that each package installed after its dependencies.
+
+---
+
+### Input:
+- **N** – number of packages  
+- **M** – number of dependency pairs  
+- **M** lines: **A B** meaning **A depends on B**
+
+---
+
+### Output:
+- Any one valid **topological order** of packages  
+- If not possible (cycle), print `-1`
+
+---
+
+### Example 1:
+
+**Input**
+
 
 **Example**
 ```
 Input:
-A -> B
-B -> C
-C -> D
+A B
+B C
+C D
 
 Output: D, C, B, A
 ```
@@ -123,9 +170,14 @@ Output: D, C, B, A
 
 ### 7. Tall Queue
 **File:** `Qus7.java`  
-People stand in a queue. When a **new person** joins at the **end**:  
-- If they are **taller** than some people already in the queue, all the **shorter people ahead of them get kicked out**.  
-- The queue always remains in non-decreasing order of height from front to back.
+You are in charge of managing people standing in a line. 
+People arrive one by one with a specific height. When a new person arrives:
+
+1. They always join the back of the line.  
+2. If the newly joined person is taller than the person standing in front of them, the shorter person in front of them is kicked out of the line, and the newly joined person moves one position forward.  
+3. Step 2 continues until the newly joined person stands behind a person who is taller than them. (or they reach the front of the line).
+
+When the last person joins the line, print the heights of the people in the order they are standing. Your solution must have an **efficient data structure** for the line, which allows insertion and removal in **O(1)** average time complexity.
 
 **Example**
 ```
